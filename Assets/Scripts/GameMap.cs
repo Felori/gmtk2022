@@ -8,7 +8,7 @@ public class GameMap : MonoBehaviour
 
     GameTile[,] tilemap;
 
-    void GenerateMap(int width, int height)
+    public void GenerateMap(int width, int height)
     {
         tilemap = new GameTile[width, height];
 
@@ -26,6 +26,11 @@ public class GameMap : MonoBehaviour
         GameTile tile = Instantiate(tilePrefab, transform);
         tile.transform.localPosition = new Vector3(x, 0, y);
         tilemap[x, y] = tile;
+    }
+
+    public GameTile GetTile(int x, int y)
+    {
+        return tilemap[x, y];
     }
 
     private void Start()
