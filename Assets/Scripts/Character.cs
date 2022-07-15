@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    public (int x, int y) Position { get; private set; }
+    public GameTile Tile { get; private set; }
 
-    public void SetTile(int x, int y)
+    public void SetTile(GameTile tile)
     {
-        Position = (x, y);
-        transform.position = new Vector3(x, 0, y);
+        if (Tile != null) Tile.SetCharacter(null);
+
+        Tile = tile;
+        tile.SetCharacter(this);
+
+        transform.position = tile.WorldPosition;
     }
 }

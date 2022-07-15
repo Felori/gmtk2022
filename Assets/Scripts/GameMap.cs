@@ -30,7 +30,7 @@ public class GameMap : MonoBehaviour
     void CreateTile(int x, int y)
     {
         GameTile tile = Instantiate(tilePrefab, transform);
-        tile.transform.localPosition = new Vector3(x, 0, y);
+        tile.Setup(x, y);
         tilemap[x, y] = tile;
     }
 
@@ -39,8 +39,10 @@ public class GameMap : MonoBehaviour
         return x >= 0 && x < width && y >= 0 && y < height;
     }
 
-    private void Start()
+    public GameTile GetTile(int x, int y)
     {
-        GenerateMap(10, 10);
+        if (!IsValidPosition(x, y)) return null;
+
+        return tilemap[x, y];
     }
 }

@@ -155,6 +155,8 @@ MonoBehaviour:
   gameMap: {fileID: 916321212}
   playerPrefab: {fileID: 3747891181459825045, guid: 02fdfda1071e2e042997bf098b8f89ef,
     type: 3}
+  enemyPrefab: {fileID: 1304243507541946538, guid: 66ac70e45128b634ab2e5ac75e33390c,
+    type: 3}
   mapSize: 10
 --- !u!4 &145863926
 Transform:
