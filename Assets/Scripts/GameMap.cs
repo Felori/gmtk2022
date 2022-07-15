@@ -6,10 +6,16 @@ public class GameMap : MonoBehaviour
 {
     [SerializeField] GameTile tilePrefab = default;
 
+    int width;
+    int height;
+
     GameTile[,] tilemap;
 
     public void GenerateMap(int width, int height)
     {
+        this.width = width;
+        this.height = height;
+
         tilemap = new GameTile[width, height];
 
         for(int x = 0; x < width; x++)
@@ -28,9 +34,9 @@ public class GameMap : MonoBehaviour
         tilemap[x, y] = tile;
     }
 
-    public GameTile GetTile(int x, int y)
+    public bool IsValidPosition(int x, int y)
     {
-        return tilemap[x, y];
+        return x >= 0 && x < width && y >= 0 && y < height;
     }
 
     private void Start()

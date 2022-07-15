@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] Character playerPrefab = default;
     [SerializeField] int mapSize = 10;
 
+    Character player;
+
     void StartGame()
     {
         gameMap.GenerateMap(mapSize, mapSize);
@@ -16,13 +18,39 @@ public class GameManager : MonoBehaviour
 
     void SpawnPlayer(int x, int y)
     {
-        Character player = Instantiate(playerPrefab);
-        GameTile spawnTile = gameMap.GetTile(x, y);
-        player.transform.position = spawnTile.Position;
+        player = Instantiate(playerPrefab);
+        player.SetTile(x, y);
+    }
+
+    void MovePlayer(int x, int y)
+    {
+        if (gameMap.IsValidPosition(x, y)) player.SetTile(x, y);
     }
 
     private void Start()
     {
         StartGame();
+    }
+
+    private void Update()
+    {
+        (int x, int y) = player.Position;
+
+        if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            MovePlayer(x, y + 1);
+        }
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            MovePlayer(x - 1, y);
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            MovePlayer(x, y - 1);
+        }
+        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            MovePlayer(x + 1, y);
+        }
     }
 }

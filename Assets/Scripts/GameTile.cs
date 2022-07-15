@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameTile : MonoBehaviour
 {
-    public Vector3 Position => transform.position;
+
 }
