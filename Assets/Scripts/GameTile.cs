@@ -38,6 +38,11 @@ public class GameTile : MonoBehaviour
         if (feature) DestroyImmediate(feature.gameObject);
     }
 
+    public void Rotate()
+    {
+        transform.Rotate(Vector3.up, 90f);
+    }
+
     public void OnGameStarted()
     {
         feature?.OnGameStarted(this);
