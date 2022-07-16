@@ -12,11 +12,19 @@ public class MapEditor : Editor
         ERASE
     }
 
+    enum ObjectType
+    {
+        TILE,
+        FEATURE
+    }
+
     bool editMode = false;
     PaintMode paintMode = PaintMode.PLACE;
+    ObjectType objectType = ObjectType.TILE;
 
     static TilePallette pallette;
     GameTile selectedTile = null;
+    Feature selectedFeature = null;
 
     static Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
 
@@ -37,18 +45,38 @@ public class MapEditor : Editor
 
             paintMode = (PaintMode)EditorGUILayout.EnumPopup("Paint Mode", paintMode);
 
+            objectType = (ObjectType)EditorGUILayout.EnumPopup("Object Type", objectType);
 
             if (paintMode == PaintMode.PLACE)
             {
-                GUILayout.Label("Selected Tile: " + (selectedTile ? selectedTile.gameObject.name : "None"));
-
-                if (pallette != null)
+                if(objectType == ObjectType.TILE)
                 {
-                    foreach (GameTile tile in pallette.Tiles)
+                    GUILayout.Label("Selected Tile: " + (selectedTile ? selectedTile.gameObject.name : "None"));
+
+                    if (pallette != null)
                     {
-                        if (GUILayout.Button(tile.gameObject.name))
+                        foreach (GameTile tile in pallette.Tiles)
                         {
-                            selectedTile = tile;
+                            if (GUILayout.Button(tile.gameObject.name))
+                            {
+                                selectedTile = tile;
+                            }
+                        }
+                    }
+                }
+
+                if(objectType == ObjectType.FEATURE)
+                {
+                    GUILayout.Label("Selected Feature: " + (selectedFeature ? selectedFeature.name : "None"));
+
+                    if (pallette != null)
+                    {
+                        foreach (Feature feature in pallette.Features)
+                        {
+                            if (GUILayout.Button(feature.gameObject.name))
+                            {
+                                selectedFeature = feature;
+                            }
                         }
                     }
                 }
@@ -85,15 +113,25 @@ public class MapEditor : Editor
                 {
                     if(paintMode == PaintMode.PLACE)
                     {
-                        if (selectedTile) map.PlaceTile(selectedTile, x, y);
+                        if(objectType == ObjectType.TILE && selectedTile)
+                            map.PlaceTile(selectedTile, x, y);
+
+                        if (objectType == ObjectType.FEATURE && selectedFeature)
+                            map.GetTile(x, y)?.PlaceFeature(selectedFeature);
                     }
                     if(paintMode == PaintMode.ERASE)
                     {
-                        map.RemoveTile(x, y);
+                        if(objectType == ObjectType.TILE)
+                            map.RemoveTile(x, y);
+
+                        if (objectType == ObjectType.FEATURE)
+                            map.GetTile(x, y)?.RemoveFeature();
                     }
+
+                    EditorUtility.SetDirty(map);
                 }
 
-                map.EditModeCursor.transform.position = new Vector3(x, 0.01f, y);
+                map.EditModeCursor.transform.position = new Vector3(x, 0.05f, y);
             }
         }
     }

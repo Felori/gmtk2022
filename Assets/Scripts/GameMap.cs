@@ -6,7 +6,7 @@ public class GameMap : MonoBehaviour
 {
     [field: SerializeField] public GameObject EditModeCursor { get; private set; }
 
-    List<GameTile> tilemap = new List<GameTile>();
+    [SerializeField, HideInInspector] List<GameTile> tilemap = new List<GameTile>();
 
     public void PlaceTile(GameTile prefab, int x, int y)
     {
@@ -25,6 +25,14 @@ public class GameMap : MonoBehaviour
 
         DestroyImmediate(tile.gameObject);
         tilemap.Remove(tile);
+    }
+
+    public void OnGameStarted()
+    {
+        foreach(GameTile tile in tilemap)
+        {
+            tile.OnGameStarted();
+        }
     }
 
     public GameTile GetTile(int x, int y)

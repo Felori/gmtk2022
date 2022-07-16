@@ -6,4 +6,5 @@ using UnityEngine;
 public class TilePallette : ScriptableObject
 {
     [field: SerializeField] public GameTile[] Tiles { get; private set; }
+    [field: SerializeField] public Feature[] Features { get; private set; }
 }
