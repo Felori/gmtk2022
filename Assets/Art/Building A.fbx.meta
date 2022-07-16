@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 6819df4f7c986214ba9fa1979e2346bb
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -3860706210146340319
+    second: Building A|Cube.014Action
+  - first:
+      74: 323470544541642830
+    second: Building A|Cube.014Action.001
+  - first:
+      74: -2504005042673860364
+    second: Building A|Cube.016Action
+  - first:
+      74: 1109502202873623569
+    second: Overhang|Cube.014Action
+  - first:
+      74: -3362581762102435322
+    second: Overhang|Cube.014Action.001
+  - first:
+      74: -4957278980233848601
+    second: Overhang|Cube.016Action
+  - first:
+      74: 5087328593162419012
+    second: Window Big|Cube.014Action
+  - first:
+      74: 5395790903611121116
+    second: Window Big|Cube.014Action.001
+  - first:
+      74: 5973998038216128771
+    second: Window Big|Cube.016Action
+  - first:
+      74: -3440901570043894722
+    second: Overhang.001|Cube.014Action
+  - first:
+      74: 2434309972156364473
+    second: Overhang.001|Cube.014Action.001
+  - first:
+      74: 7857391926159343808
+    second: Overhang.001|Cube.016Action
+  - first:
+      74: 1244454091382177544
+    second: Window|Cube.014Action
+  - first:
+      74: 4402435338827788742
+    second: Window|Cube.014Action.001
+  - first:
+      74: -847556745948891407
+    second: Window|Cube.016Action
+  - first:
+      74: 7077008856831965156
+    second: Window.001|Cube.014Action
+  - first:
+      74: 2408768312960821674
+    second: Window.001|Cube.014Action.001
+  - first:
+      74: 8760822136275686328
+    second: Window.001|Cube.016Action
+  - first:
+      74: 5723650075057436490
+    second: Door|Cube.014Action
+  - first:
+      74: 1248175062036921583
+    second: Door|Cube.014Action.001
+  - first:
+      74: 7269310751264031356
+    second: Door|Cube.016Action
+  - first:
+      74: -1334268470220863273
+    second: Overhang.002|Cube.014Action
+  - first:
+      74: -7083970530012998369
+    second: Overhang.002|Cube.014Action.001
+  - first:
+      74: -5144232351210801788
+    second: Overhang.002|Cube.016Action
+  - first:
+      74: -5594376955682589857
+    second: Window.002|Cube.014Action
+  - first:
+      74: 8366979471113504470
+    second: Window.002|Cube.014Action.001
+  - first:
+      74: -977024754061633771
+    second: Window.002|Cube.016Action
+  - first:
+      74: 4491814925683138163
+    second: Window.009|Cube.014Action
+  - first:
+      74: 6106925792789856269
+    second: Window.009|Cube.014Action.001
+  - first:
+      74: -3510588055082710342
+    second: Window.009|Cube.016Action
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 1
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
