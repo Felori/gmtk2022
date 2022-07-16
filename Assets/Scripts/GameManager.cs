@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
+    [SerializeField] CinemachineVirtualCamera playerCam = default;
 
     Player player;
     List<Enemy> enemies = new List<Enemy>();
@@ -31,7 +33,13 @@ public class GameManager : MonoBehaviour
             if (character is Enemy enemy) enemies.Add(enemy);
         }
 
-        if (player == null) Debug.LogError("No player found in the map!");
+        if (player == null)
+        {
+            Debug.LogError("No player found in the map!");
+            return;
+        }
+
+        playerCam.Follow = player.transform;
 
         actionPoints[0] = RollDice();
         actionPoints[1] = RollDice();

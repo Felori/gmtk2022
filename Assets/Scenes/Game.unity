@@ -235,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameMap: {fileID: 916321212}
   actionPointsUi: {fileID: 323899239045645655}
+  playerCam: {fileID: 1616579226}
 --- !u!4 &145863926
 Transform:
   m_ObjectHideFlags: 0
@@ -2952,7 +2953,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.6085578, y: 1}
+    m_SensorSize: {x: 2.1698112, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
