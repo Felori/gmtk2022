@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7445991828229688970}
-  - component: {fileID: 1304243507541946538}
+  - component: {fileID: -2085260289233310315}
   - component: {fileID: 7339372985185561330}
   m_Layer: 0
   m_Name: Enemy
@@ -66,7 +66,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1304243507541946538
+--- !u!114 &-2085260289233310315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -75,9 +75,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6307540649414523175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4a4c93d24567f458df66bb6edafd53, type: 3}
+  m_Script: {fileID: 11500000, guid: 25b026470d7f6bd498a5f35b22bea2eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 5
+  damage: 1
+  animator: {fileID: 2504966058921764810}
 --- !u!95 &7339372985185561330
 Animator:
   serializedVersion: 4
@@ -128,7 +131,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}
@@ -138,7 +141,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}
@@ -153,7 +156,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7872272aca2b7cc4b9b32b110e834a81,
         type: 3}

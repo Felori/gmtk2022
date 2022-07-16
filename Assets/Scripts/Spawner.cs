@@ -5,14 +5,13 @@ using UnityEngine;
 public class Spawner : Feature
 {
     [SerializeField] Character characterPrefab = default;
-    [SerializeField] bool isPlayerSpawner = false;
+    [SerializeField] Quaternion initialRotation = default;
 
     public override Character OnGameStarted(GameTile tile)
     {
         Character character = Instantiate(characterPrefab);
         character.SetTile(tile);
-
-        if (isPlayerSpawner) return character;
-        return null;
+        character.transform.rotation = initialRotation;
+        return character;
     }
 }
