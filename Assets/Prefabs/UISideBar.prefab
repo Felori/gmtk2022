@@ -378,6 +378,7 @@ GameObject:
   - component: {fileID: 5408249777661668284}
   - component: {fileID: 1364325504197247149}
   - component: {fileID: 1363545089887836986}
+  - component: {fileID: 3482776517718046494}
   m_Layer: 5
   m_Name: UISideBar
   m_TagString: Untagged
@@ -445,6 +446,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3482776517718046494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928247441062865419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceff328db6a17b94b99ed3dd3768ce3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionPointNumbers:
+  - {fileID: 8061483093224449584}
+  - {fileID: 4781998241545054344}
+  - {fileID: 8462937071612692292}
 --- !u!1 &3996851204349502183
 GameObject:
   m_ObjectHideFlags: 0
