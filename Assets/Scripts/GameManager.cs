@@ -5,24 +5,39 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameMap gameMap = default;
-    [SerializeField] Character playerPrefab = default;
-    [SerializeField] Character enemyPrefab = default;
-    [SerializeField] int mapSize = 10;
 
     Character player;
+    int playerActionPoints = 0;
 
     void StartGame()
     {
         player = gameMap.OnGameStarted();
+        RollMovement();
+    }
+
+    void EndTurn()
+    {
+        Debug.Log("End Turn");
+        RollMovement();
     }
 
     void MovePlayer(int x, int y)
     {
+        if (playerActionPoints == 0) return;
+
         GameTile tile = gameMap.GetTile(x, y);
         if (tile != null && tile.Character == null)
         {
             player.SetTile(tile);
+            playerActionPoints--;
+            if (playerActionPoints == 0) EndTurn();
         }
+    }
+
+    void RollMovement()
+    {
+        playerActionPoints = Random.Range(1, 7);
+        Debug.Log("Rolled " + playerActionPoints);
     }
 
     private void Start()

@@ -121,8 +121,8 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 0.2991723, g: 0.7830189, b: 0.3824, a: 1}
-    - _Color: {r: 0.29917228, g: 0.7830188, b: 0.38239998, a: 1}
+    - _BaseColor: {r: 0.24630652, g: 0.35702297, b: 0.4245283, a: 1}
+    - _Color: {r: 0.24630648, g: 0.35702294, b: 0.42452827, a: 1}
     - _CurvedWorldBendSettings: {r: 5, g: 1, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
