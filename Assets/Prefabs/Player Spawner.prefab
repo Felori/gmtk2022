@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterPrefab: {fileID: 3747891181459825045, guid: 02fdfda1071e2e042997bf098b8f89ef,
     type: 3}
+  isPlayerSpawner: 1
 --- !u!1 &7862398370897984355
 GameObject:
   m_ObjectHideFlags: 0

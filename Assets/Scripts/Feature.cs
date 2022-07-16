@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Feature : MonoBehaviour
 {
-    public virtual void OnGameStarted(GameTile tile)
+    public virtual Character OnGameStarted(GameTile tile)
     {
-
+        return null;
     }
 }

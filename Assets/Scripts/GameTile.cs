@@ -43,9 +43,11 @@ public class GameTile : MonoBehaviour
         transform.Rotate(Vector3.up, 90f);
     }
 
-    public void OnGameStarted()
+    public Character OnGameStarted()
     {
-        feature?.OnGameStarted(this);
+        if (feature == null) return null;
+
+        return feature.OnGameStarted(this);
     }
 
     [ContextMenu("Print Position")]

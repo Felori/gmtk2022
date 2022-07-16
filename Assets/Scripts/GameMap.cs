@@ -27,12 +27,20 @@ public class GameMap : MonoBehaviour
         tilemap.Remove(tile);
     }
 
-    public void OnGameStarted()
+    public Character OnGameStarted()
     {
+        Character player = null;
+
         foreach(GameTile tile in tilemap)
         {
-            tile.OnGameStarted();
+            Character character = tile.OnGameStarted();
+            if (character != null)
+                player = character;
         }
+
+        if (player == null) Debug.LogError("No spawner for player character placed in the map!");
+
+        return player;
     }
 
     public GameTile GetTile(int x, int y)
