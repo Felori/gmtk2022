@@ -42,6 +42,14 @@ public class GameMap : MonoBehaviour
         return characters.ToArray();
     }
 
+    public void ResetMap()
+    {
+        foreach(GameTile tile in tilemap)
+        {
+            tile.ResetTile();
+        }
+    }
+
     public GameTile GetTile(int x, int y)
     {
         foreach(GameTile tile in tilemap)

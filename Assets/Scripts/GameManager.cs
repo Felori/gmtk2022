@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera playerCam = default;
 
     Player player;
-    List<Enemy> enemies = new List<Enemy>();
+    List<Enemy> enemies;
 
     int[] actionPoints = new int[3];
 
@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        enemies = new List<Enemy>();
         Character[] characters = gameMap.OnGameStarted();
         foreach(Character character in characters)
         {
@@ -46,6 +47,13 @@ public class GameManager : MonoBehaviour
         actionPoints[2] = RollDice();
 
         actionPointsUi.SetActionPoints(actionPoints);
+    }
+
+    void RestartGame()
+    {
+        gameMap.ResetMap();
+
+        StartGame();
     }
 
     void EndTurn()
@@ -88,6 +96,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+
         if (player == null) return;
 
         (int x, int y) = player.Tile.Position;
