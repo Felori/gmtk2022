@@ -14,6 +14,10 @@ public class GameManager : MonoBehaviour
 
     int[] actionPoints = new int[3];
 
+    int foodTemp;
+
+    bool gameOver;
+
     int CurrentActionPoints
     {
         get => actionPoints[0];
@@ -40,6 +44,8 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        player.onPlayerDied += OnPlayerDied;
+
         playerCam.Follow = player.transform;
 
         actionPoints[0] = RollDice();
@@ -47,6 +53,10 @@ public class GameManager : MonoBehaviour
         actionPoints[2] = RollDice();
 
         actionPointsUi.SetActionPoints(actionPoints);
+
+        foodTemp = gameMap.MaxMoves;
+
+        gameOver = false;
     }
 
     void RestartGame()
@@ -79,6 +89,12 @@ public class GameManager : MonoBehaviour
         {
             player.LookAt(tile.transform.position);
             player.SetTile(tile);
+            foodTemp--;
+            if (foodTemp == 0)
+            {
+                Debug.Log("Food got too cold!");
+                gameOver = true;
+            }
             CurrentActionPoints--;
             if (CurrentActionPoints == 0) EndTurn();
         }
@@ -87,6 +103,12 @@ public class GameManager : MonoBehaviour
     int RollDice()
     {
         return Random.Range(1, 7);
+    }
+
+    void OnPlayerDied()
+    {
+        gameOver = true;
+        Debug.Log("Player Died!");
     }
 
     private void Start()
@@ -98,7 +120,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
 
-        if (player == null) return;
+        if (gameOver || player == null) return;
 
         (int x, int y) = player.Tile.Position;
 

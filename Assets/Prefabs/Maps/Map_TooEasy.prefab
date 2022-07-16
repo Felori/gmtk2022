@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3323528108080203114
 Transform:
   m_ObjectHideFlags: 0
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99425da10f7427a4784708ad84988274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <MaxMoves>k__BackingField: 30
   <EditModeCursor>k__BackingField: {fileID: 3323528108080203118}
   tilemap:
   - {fileID: 6061512501335183474}

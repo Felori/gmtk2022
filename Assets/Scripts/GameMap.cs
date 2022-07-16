@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class GameMap : MonoBehaviour
 {
+    [field: SerializeField] public int MaxMoves { get; private set; }
     [field: SerializeField] public GameObject EditModeCursor { get; private set; }
 
     [SerializeField, HideInInspector] List<GameTile> tilemap = new List<GameTile>();
