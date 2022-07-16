@@ -14,7 +14,6 @@ public class GameMap : MonoBehaviour
         RemoveTile(x, y);
 
         GameTile tile = (GameTile)PrefabUtility.InstantiatePrefab(prefab, transform);
-        //GameTile tile = Instantiate(prefab, transform);
         tile.Setup(x, y);
         tilemap.Add(tile);
     }
@@ -29,20 +28,18 @@ public class GameMap : MonoBehaviour
         tilemap.Remove(tile);
     }
 
-    public Character OnGameStarted()
+    public Character[] OnGameStarted()
     {
-        Character player = null;
+        List<Character> characters = new List<Character>();
 
         foreach(GameTile tile in tilemap)
         {
-            Character character = tile.OnGameStarted();
-            if (character != null)
-                player = character;
+            characters.Add(tile.OnGameStarted(GetTile));
         }
 
-        if (player == null) Debug.LogError("No spawner for player character placed in the map!");
+        characters.RemoveAll(character => character == null);
 
-        return player;
+        return characters.ToArray();
     }
 
     public GameTile GetTile(int x, int y)

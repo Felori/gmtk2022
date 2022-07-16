@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73fa0d32744f70b4abd2e0303e087b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterPrefab: {fileID: 1304243507541946538, guid: 66ac70e45128b634ab2e5ac75e33390c,
+  characterPrefab: {fileID: -2085260289233310315, guid: 66ac70e45128b634ab2e5ac75e33390c,
     type: 3}
-  isPlayerSpawner: 0
+  initialRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}

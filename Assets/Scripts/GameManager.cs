@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
 
-    Character player;
+    Player player;
+    List<Enemy> enemies = new List<Enemy>();
 
     int[] actionPoints = new int[3];
 
@@ -23,7 +24,14 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        player = gameMap.OnGameStarted();
+        Character[] characters = gameMap.OnGameStarted();
+        foreach(Character character in characters)
+        {
+            if (character is Player player) this.player = player;
+            if (character is Enemy enemy) enemies.Add(enemy);
+        }
+
+        if (player == null) Debug.LogError("No player found in the map!");
 
         actionPoints[0] = RollDice();
         actionPoints[1] = RollDice();
@@ -34,6 +42,11 @@ public class GameManager : MonoBehaviour
 
     void EndTurn()
     {
+        foreach(Enemy enemy in enemies)
+        {
+            enemy.DoEnemyTurn();
+        }
+
         actionPoints[0] = actionPoints[1];
         actionPoints[1] = actionPoints[2];
         actionPoints[2] = RollDice();
@@ -48,6 +61,7 @@ public class GameManager : MonoBehaviour
         GameTile tile = gameMap.GetTile(x, y);
         if (tile != null && tile.Character == null)
         {
+            player.LookAt(tile.transform.position);
             player.SetTile(tile);
             CurrentActionPoints--;
             if (CurrentActionPoints == 0) EndTurn();
