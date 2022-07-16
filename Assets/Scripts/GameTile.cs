@@ -1,16 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
+[System.Serializable]
 public class GameTile : MonoBehaviour
 {
-    [SerializeField, HideInInspector] int x;
-    [SerializeField, HideInInspector] int y;
+    [SerializeField] int x;
+    [SerializeField] int y;
     public (int x, int y) Position => (x, y);
     public Character Character { get; private set; }
     public Vector3 WorldPosition => transform.position;
 
-    [SerializeField, HideInInspector] Feature feature;
+    public Feature feature;
 
     public void Setup(int x, int y)
     {
@@ -30,12 +32,16 @@ public class GameTile : MonoBehaviour
     {
         RemoveFeature();
 
-        feature = Instantiate(featurePrefab, transform);
+        feature = (Feature)PrefabUtility.InstantiatePrefab(featurePrefab, transform);
+
+        EditorUtility.SetDirty(this);
     }
 
     public void RemoveFeature()
     {
         if (feature) DestroyImmediate(feature.gameObject);
+
+        EditorUtility.SetDirty(this);
     }
 
     public void Rotate()

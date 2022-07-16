@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class GameMap : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class GameMap : MonoBehaviour
     {
         RemoveTile(x, y);
 
-        GameTile tile = Instantiate(prefab, new Vector3(x, 0, y), Quaternion.identity, transform);
+        GameTile tile = (GameTile)PrefabUtility.InstantiatePrefab(prefab, transform);
+        //GameTile tile = Instantiate(prefab, transform);
         tile.Setup(x, y);
         tilemap.Add(tile);
     }
