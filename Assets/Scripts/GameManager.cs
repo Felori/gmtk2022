@@ -5,39 +5,58 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameMap gameMap = default;
+    [SerializeField] ActionPointsUI actionPointsUi = default;
 
     Character player;
-    int playerActionPoints = 0;
+
+    int[] actionPoints = new int[3];
+
+    int CurrentActionPoints
+    {
+        get => actionPoints[0];
+        set
+        {
+            actionPoints[0] = value;
+            actionPointsUi.SetCurrentActionPoints(value);
+        }
+    }
 
     void StartGame()
     {
         player = gameMap.OnGameStarted();
-        RollMovement();
+
+        actionPoints[0] = RollDice();
+        actionPoints[1] = RollDice();
+        actionPoints[2] = RollDice();
+
+        actionPointsUi.SetActionPoints(actionPoints);
     }
 
     void EndTurn()
     {
-        Debug.Log("End Turn");
-        RollMovement();
+        actionPoints[0] = actionPoints[1];
+        actionPoints[1] = actionPoints[2];
+        actionPoints[2] = RollDice();
+
+        actionPointsUi.SetActionPoints(actionPoints);
     }
 
     void MovePlayer(int x, int y)
     {
-        if (playerActionPoints == 0) return;
+        if (CurrentActionPoints == 0) return;
 
         GameTile tile = gameMap.GetTile(x, y);
         if (tile != null && tile.Character == null)
         {
             player.SetTile(tile);
-            playerActionPoints--;
-            if (playerActionPoints == 0) EndTurn();
+            CurrentActionPoints--;
+            if (CurrentActionPoints == 0) EndTurn();
         }
     }
 
-    void RollMovement()
+    int RollDice()
     {
-        playerActionPoints = Random.Range(1, 7);
-        Debug.Log("Rolled " + playerActionPoints);
+        return Random.Range(1, 7);
     }
 
     private void Start()

@@ -54,4 +54,18 @@ public class GameMap : MonoBehaviour
 
         return null;
     }
+
+    [ContextMenu("Print Tilemap Size")]
+    void PrintTilemapSize()
+    {
+        Debug.Log(tilemap.Count);
+    }
+
+    [ContextMenu("Remove null tiles from tilemap")]
+    void RemoveNullTiles()
+    {
+        tilemap.RemoveAll(item => item == null);
+
+        EditorUtility.SetDirty(this);
+    }
 }
