@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
+    [SerializeField] CinemachineVirtualCamera playerCam = default;
 
     Player player;
-    List<Enemy> enemies = new List<Enemy>();
+    List<Enemy> enemies;
 
     int[] actionPoints = new int[3];
 
@@ -24,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        enemies = new List<Enemy>();
         Character[] characters = gameMap.OnGameStarted();
         foreach(Character character in characters)
         {
@@ -31,13 +34,26 @@ public class GameManager : MonoBehaviour
             if (character is Enemy enemy) enemies.Add(enemy);
         }
 
-        if (player == null) Debug.LogError("No player found in the map!");
+        if (player == null)
+        {
+            Debug.LogError("No player found in the map!");
+            return;
+        }
+
+        playerCam.Follow = player.transform;
 
         actionPoints[0] = RollDice();
         actionPoints[1] = RollDice();
         actionPoints[2] = RollDice();
 
         actionPointsUi.SetActionPoints(actionPoints);
+    }
+
+    void RestartGame()
+    {
+        gameMap.ResetMap();
+
+        StartGame();
     }
 
     void EndTurn()
@@ -80,6 +96,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+
         if (player == null) return;
 
         (int x, int y) = player.Tile.Position;
