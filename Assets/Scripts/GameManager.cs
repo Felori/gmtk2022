@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        gameMap.OnGameStarted();
+        player = gameMap.OnGameStarted();
     }
 
     void MovePlayer(int x, int y)
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if (player == null) return;
+
         (int x, int y) = player.Tile.Position;
 
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
