@@ -3,7 +3,17 @@ guid: 91bf77777584f1748a7eb5dadd038980
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FinishLineGround
+    second: {fileID: 2100000, guid: b79c8f06c8ff7b24a96c6d75bea4d0ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FinishLineMarks
+    second: {fileID: 2100000, guid: 22cb939ceb987f34b9a9723a64ad802e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
