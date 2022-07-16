@@ -458,7 +458,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 720, y: 720}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -846,7 +846,7 @@ PrefabInstance:
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
@@ -856,7 +856,7 @@ PrefabInstance:
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -560.5121
+      value: 166.436
       objectReference: {fileID: 0}
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
@@ -901,12 +901,12 @@ PrefabInstance:
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 280.25604
+      value: -83.21808
       objectReference: {fileID: 0}
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000030517578
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5408249777661668284, guid: 5a91a806f564cc045a5c2fa9600ccccf,
         type: 3}
