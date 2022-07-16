@@ -13,10 +13,10 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        gameMap.GenerateMap(mapSize, mapSize);
-        player = SpawnCharacter(playerPrefab, 0, 0);
+        //gameMap.GenerateMap(mapSize, mapSize);
+        /*player = SpawnCharacter(playerPrefab, 0, 0);
         SpawnCharacter(enemyPrefab, mapSize / 2, mapSize / 2);
-        SpawnCharacter(enemyPrefab, mapSize - 1, mapSize - 1);
+        SpawnCharacter(enemyPrefab, mapSize - 1, mapSize - 1);*/
     }
 
     Character SpawnCharacter(Character prefab, int x, int y)

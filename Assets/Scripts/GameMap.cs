@@ -4,45 +4,36 @@ using UnityEngine;
 
 public class GameMap : MonoBehaviour
 {
-    [SerializeField] GameTile tilePrefab = default;
+    [field: SerializeField] public GameObject EditModeCursor { get; private set; }
 
-    int width;
-    int height;
+    List<GameTile> tilemap = new List<GameTile>();
 
-    GameTile[,] tilemap;
-
-    public void GenerateMap(int width, int height)
+    public void PlaceTile(GameTile prefab, int x, int y)
     {
-        this.width = width;
-        this.height = height;
+        RemoveTile(x, y);
 
-        tilemap = new GameTile[width, height];
-
-        for(int x = 0; x < width; x++)
-        {
-            for(int y = 0; y < height; y++)
-            {
-                CreateTile(x, y);
-            }
-        }
-    }
-
-    void CreateTile(int x, int y)
-    {
-        GameTile tile = Instantiate(tilePrefab, transform);
+        GameTile tile = Instantiate(prefab, new Vector3(x, 0, y), Quaternion.identity, transform);
         tile.Setup(x, y);
-        tilemap[x, y] = tile;
+        tilemap.Add(tile);
     }
 
-    public bool IsValidPosition(int x, int y)
+    public void RemoveTile(int x, int y)
     {
-        return x >= 0 && x < width && y >= 0 && y < height;
+        GameTile tile = GetTile(x, y);
+
+        if (tile == null) return;
+
+        DestroyImmediate(tile.gameObject);
+        tilemap.Remove(tile);
     }
 
     public GameTile GetTile(int x, int y)
     {
-        if (!IsValidPosition(x, y)) return null;
+        foreach(GameTile tile in tilemap)
+        {
+            if (tile.Position == (x, y)) return tile;
+        }
 
-        return tilemap[x, y];
+        return null;
     }
 }

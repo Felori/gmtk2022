@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2360e28356f6c144da535e3caeafc82d, type: 3}
+  m_Name: Tile Pallette
+  m_EditorClassIdentifier: 
+  <Tiles>k__BackingField:
+  - {fileID: 7375582439273700420, guid: 3df433b38af8c8a42a26c72f502729ba, type: 3}
