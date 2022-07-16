@@ -6,10 +6,11 @@ using UnityEditor;
 [CustomEditor(typeof(GameMap))]
 public class MapEditor : Editor
 {
-    enum PaintMode
+    enum ToolMode
     {
         PLACE,
-        ERASE
+        ERASE,
+        ROTATE
     }
 
     enum ObjectType
@@ -19,7 +20,7 @@ public class MapEditor : Editor
     }
 
     bool editMode = false;
-    PaintMode paintMode = PaintMode.PLACE;
+    ToolMode toolMode = ToolMode.PLACE;
     ObjectType objectType = ObjectType.TILE;
 
     static TilePallette pallette;
@@ -43,11 +44,11 @@ public class MapEditor : Editor
         {
             pallette = (TilePallette)EditorGUILayout.ObjectField("Tile Pallette", pallette, typeof(TilePallette), false);
 
-            paintMode = (PaintMode)EditorGUILayout.EnumPopup("Paint Mode", paintMode);
+            toolMode = (ToolMode)EditorGUILayout.EnumPopup("Tool Mode", toolMode);
 
             objectType = (ObjectType)EditorGUILayout.EnumPopup("Object Type", objectType);
 
-            if (paintMode == PaintMode.PLACE)
+            if (toolMode == ToolMode.PLACE)
             {
                 if(objectType == ObjectType.TILE)
                 {
@@ -111,7 +112,7 @@ public class MapEditor : Editor
 
                 if(Event.current.type == EventType.MouseDown && Event.current.button == 0)
                 {
-                    if(paintMode == PaintMode.PLACE)
+                    if(toolMode == ToolMode.PLACE)
                     {
                         if(objectType == ObjectType.TILE && selectedTile)
                             map.PlaceTile(selectedTile, x, y);
@@ -119,13 +120,19 @@ public class MapEditor : Editor
                         if (objectType == ObjectType.FEATURE && selectedFeature)
                             map.GetTile(x, y)?.PlaceFeature(selectedFeature);
                     }
-                    if(paintMode == PaintMode.ERASE)
+
+                    if(toolMode == ToolMode.ERASE)
                     {
                         if(objectType == ObjectType.TILE)
                             map.RemoveTile(x, y);
 
                         if (objectType == ObjectType.FEATURE)
                             map.GetTile(x, y)?.RemoveFeature();
+                    }
+
+                    if(toolMode == ToolMode.ROTATE)
+                    {
+                        map.GetTile(x, y)?.Rotate();
                     }
 
                     EditorUtility.SetDirty(map);
