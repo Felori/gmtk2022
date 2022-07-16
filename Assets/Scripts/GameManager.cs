@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         actionPoints[1] = RollDice();
         actionPoints[2] = RollDice();
 
-        actionPointsUi.SetActionPoints(actionPoints);
+        actionPointsUi.SetActionPoints(actionPoints, false);
 
         foodTemp = gameMap.MaxMoves;
 
@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         actionPoints[1] = actionPoints[2];
         actionPoints[2] = RollDice();
 
-        actionPointsUi.SetActionPoints(actionPoints);
+        actionPointsUi.SetActionPoints(actionPoints, true);
     }
 
     void MovePlayer(int x, int y)

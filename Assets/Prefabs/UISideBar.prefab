@@ -463,6 +463,7 @@ MonoBehaviour:
   - {fileID: 8061483093224449584}
   - {fileID: 4781998241545054344}
   - {fileID: 8462937071612692292}
+  animator: {fileID: 3744446921294579628}
 --- !u!95 &3744446921294579628
 Animator:
   serializedVersion: 4
@@ -715,7 +716,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4294180758
   m_fontColor: {r: 0.5896226, g: 1, b: 0.95489603, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
@@ -851,7 +852,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 16777215
+    rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
