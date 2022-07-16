@@ -1317,11 +1317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameMap: {fileID: 916321212}
-  playerPrefab: {fileID: 3747891181459825045, guid: 02fdfda1071e2e042997bf098b8f89ef,
-    type: 3}
-  enemyPrefab: {fileID: 1304243507541946538, guid: 66ac70e45128b634ab2e5ac75e33390c,
-    type: 3}
-  mapSize: 10
 --- !u!4 &145863926
 Transform:
   m_ObjectHideFlags: 0
@@ -12333,7 +12328,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.4
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
