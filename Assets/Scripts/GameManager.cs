@@ -13,18 +13,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
-        //gameMap.GenerateMap(mapSize, mapSize);
-        /*player = SpawnCharacter(playerPrefab, 0, 0);
-        SpawnCharacter(enemyPrefab, mapSize / 2, mapSize / 2);
-        SpawnCharacter(enemyPrefab, mapSize - 1, mapSize - 1);*/
-    }
-
-    Character SpawnCharacter(Character prefab, int x, int y)
-    {
-        Character character = Instantiate(prefab);
-        GameTile tile = gameMap.GetTile(x, y);
-        character.SetTile(tile);
-        return character;
+        gameMap.OnGameStarted();
     }
 
     void MovePlayer(int x, int y)
