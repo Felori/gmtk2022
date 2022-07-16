@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
-  damage: 1
+  damage: 5
   animator: {fileID: 2504966058921764810}
 --- !u!95 &7339372985185561330
 Animator:
