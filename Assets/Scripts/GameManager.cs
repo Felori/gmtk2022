@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    Queue<GameAction> actionQueue;
+    GameAction currentAction;
+
     void StartGame()
     {
         enemies = new List<Enemy>();
@@ -70,6 +73,8 @@ public class GameManager : MonoBehaviour
         onFoodTempChanged?.Invoke(1f);
 
         gameOver = false;
+
+        actionQueue = new Queue<GameAction>();
     }
 
     void RestartGame()
@@ -79,12 +84,9 @@ public class GameManager : MonoBehaviour
         StartGame();
     }
 
-    void EndTurn()
+    void StartTurn()
     {
-        foreach(Enemy enemy in enemies)
-        {
-            enemy.DoEnemyTurn();
-        }
+        if (gameOver) return;
 
         actionPoints[0] = actionPoints[1];
         actionPoints[1] = actionPoints[2];
@@ -102,17 +104,15 @@ public class GameManager : MonoBehaviour
         GameTile tile = gameMap.GetTile(x, y);
         if (tile != null)
         {
-            player.LookAt(tile.transform.position);
-
             if (tile.Character != null && tile.Character is Enemy enemy)
             {
-                player.Attack(enemy, CurrentActionPoints);
+                QueueAction(new CharacterAttackAction(player, enemy, CurrentActionPoints));
                 CurrentActionPoints = 0;
             }
             else
             {
+                QueueAction(new PlayerMoveAction(player, player.transform.position, tile.transform.position));
                 player.SetTile(tile);
-                player.OnPlayerMoved();
                 CurrentActionPoints--;
             }
 
@@ -124,7 +124,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Food got too cold!");
             }
 
-            if (CurrentActionPoints == 0) EndTurn();
+            if (CurrentActionPoints == 0)
+            {
+                QueueAction(new EndTurnAction(enemies));
+                QueueAction(new ControlAction(StartTurn));
+            }
         }
     }
 
@@ -158,6 +162,32 @@ public class GameManager : MonoBehaviour
             PlayerWin();
     }
 
+    void QueueAction(GameAction action)
+    {
+        actionQueue.Enqueue(action);
+    }
+
+    bool ProcessActions()
+    {
+        if(currentAction != null)
+        {
+            if(currentAction.Done)
+            {
+                currentAction = null;
+            }
+
+            return true;
+        }
+        else if (actionQueue.Count > 0)
+        {
+            currentAction = actionQueue.Dequeue();
+            StartCoroutine(currentAction.Execute(this));
+            return true;
+        }
+
+        return false;
+    }
+
     private void Start()
     {
         StartGame();
@@ -166,6 +196,8 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+
+        if (ProcessActions()) return;
 
         if (gameOver || player == null) return;
 

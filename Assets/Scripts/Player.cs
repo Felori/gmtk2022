@@ -6,16 +6,15 @@ using TMPro;
 
 public class Player : Character
 {
-    [SerializeField] Animator animator = default;
     [SerializeField] TMP_Text actionPointsText = default;
 
     public event Action onPlayerDied;
 
     protected override void Die()
     {
-        animator.SetTrigger("Die");
+        base.Die();
+        actionPointsText.gameObject.SetActive(false);
         onPlayerDied?.Invoke();
-        Destroy(gameObject, 5f);
     }
 
     protected override void OnDamageTaken()
