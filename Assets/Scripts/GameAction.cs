@@ -65,6 +65,7 @@ public class CharacterAttackAction : GameAction
     public override IEnumerator Execute(GameManager manager)
     {
         attacker.LookAt(target.transform.position);
+        target.LookAt(attacker.transform.position);
 
         attacker.Attack();
 
