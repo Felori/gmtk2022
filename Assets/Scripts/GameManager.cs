@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
+    [SerializeField] CinemachineVirtualCamera playerCam = default;
 
     Player player;
-    List<Enemy> enemies = new List<Enemy>();
+    List<Enemy> enemies;
 
     int[] actionPoints = new int[3];
+
+    int foodTemp;
+
+    bool gameOver;
 
     int CurrentActionPoints
     {
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        enemies = new List<Enemy>();
         Character[] characters = gameMap.OnGameStarted();
         foreach(Character character in characters)
         {
@@ -31,13 +38,32 @@ public class GameManager : MonoBehaviour
             if (character is Enemy enemy) enemies.Add(enemy);
         }
 
-        if (player == null) Debug.LogError("No player found in the map!");
+        if (player == null)
+        {
+            Debug.LogError("No player found in the map!");
+            return;
+        }
+
+        player.onPlayerDied += OnPlayerDied;
+
+        playerCam.Follow = player.transform;
 
         actionPoints[0] = RollDice();
         actionPoints[1] = RollDice();
         actionPoints[2] = RollDice();
 
-        actionPointsUi.SetActionPoints(actionPoints);
+        actionPointsUi.SetActionPoints(actionPoints, false);
+
+        foodTemp = gameMap.MaxMoves;
+
+        gameOver = false;
+    }
+
+    void RestartGame()
+    {
+        gameMap.ResetMap();
+
+        StartGame();
     }
 
     void EndTurn()
@@ -51,7 +77,7 @@ public class GameManager : MonoBehaviour
         actionPoints[1] = actionPoints[2];
         actionPoints[2] = RollDice();
 
-        actionPointsUi.SetActionPoints(actionPoints);
+        actionPointsUi.SetActionPoints(actionPoints, true);
     }
 
     void MovePlayer(int x, int y)
@@ -63,6 +89,12 @@ public class GameManager : MonoBehaviour
         {
             player.LookAt(tile.transform.position);
             player.SetTile(tile);
+            foodTemp--;
+            if (foodTemp == 0)
+            {
+                Debug.Log("Food got too cold!");
+                gameOver = true;
+            }
             CurrentActionPoints--;
             if (CurrentActionPoints == 0) EndTurn();
         }
@@ -73,6 +105,12 @@ public class GameManager : MonoBehaviour
         return Random.Range(1, 7);
     }
 
+    void OnPlayerDied()
+    {
+        gameOver = true;
+        Debug.Log("Player Died!");
+    }
+
     private void Start()
     {
         StartGame();
@@ -80,7 +118,9 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (player == null) return;
+        if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+
+        if (gameOver || player == null) return;
 
         (int x, int y) = player.Tile.Position;
 

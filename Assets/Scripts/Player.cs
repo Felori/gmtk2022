@@ -1,11 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character
 {
+    public event Action onPlayerDied;
+
     protected override void Die()
     {
-        Debug.Log("Player Died!");
+        Destroy(gameObject);
+        onPlayerDied?.Invoke();
     }
 }

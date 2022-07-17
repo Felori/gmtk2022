@@ -75,6 +75,15 @@ public class GameTile : MonoBehaviour
         return feature.OnGameStarted(this);
     }
 
+    public void ResetTile()
+    {
+        if(Character != null)
+        {
+            Destroy(Character.gameObject);
+            Character = null;
+        }
+    }
+
     [ContextMenu("Print Position")]
     void PrintPosition()
     {

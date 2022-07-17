@@ -5,6 +5,7 @@ using UnityEditor;
 
 public class GameMap : MonoBehaviour
 {
+    [field: SerializeField] public int MaxMoves { get; private set; }
     [field: SerializeField] public GameObject EditModeCursor { get; private set; }
 
     [SerializeField, HideInInspector] List<GameTile> tilemap = new List<GameTile>();
@@ -40,6 +41,14 @@ public class GameMap : MonoBehaviour
         characters.RemoveAll(character => character == null);
 
         return characters.ToArray();
+    }
+
+    public void ResetMap()
+    {
+        foreach(GameTile tile in tilemap)
+        {
+            tile.ResetTile();
+        }
     }
 
     public GameTile GetTile(int x, int y)

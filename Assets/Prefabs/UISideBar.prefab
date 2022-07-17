@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 1364325504197247149}
   - component: {fileID: 1363545089887836986}
   - component: {fileID: 3482776517718046494}
+  - component: {fileID: 3744446921294579628}
   m_Layer: 5
   m_Name: UISideBar
   m_TagString: Untagged
@@ -405,7 +406,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 280.25604, y: 0.000030517578}
+  m_AnchoredPosition: {x: 280.25604, y: 0}
   m_SizeDelta: {x: -560.5121, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1364325504197247149
@@ -462,6 +463,27 @@ MonoBehaviour:
   - {fileID: 8061483093224449584}
   - {fileID: 4781998241545054344}
   - {fileID: 8462937071612692292}
+  animator: {fileID: 3744446921294579628}
+--- !u!95 &3744446921294579628
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928247441062865419}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07d6e9fff1aa32b40be990e9212b9e5a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3996851204349502183
 GameObject:
   m_ObjectHideFlags: 0
