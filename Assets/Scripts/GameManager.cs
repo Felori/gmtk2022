@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
         actionQueue = new Queue<GameAction>();
     }
 
-    void RestartGame()
+    public void RestartGame()
     {
         ClearMap();
         StartGame();
@@ -184,6 +185,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("Player Won!");
         gameOver = true;
         onPlayerWon?.Invoke();
+        if (currentMap < maps.Length - 1)
+        {
+            SetCurrentMap(currentMap + 1);
+            RestartGame();
+        }
+        SceneManager.LoadScene("Title");
     }
 
     void PlayerLose()
@@ -249,12 +256,6 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            SetCurrentMap((currentMap + 1) % maps.Length);
-            RestartGame();
-        }
-
         if (ProcessActions()) return;
 
         if (gameOver || player == null) return;
