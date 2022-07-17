@@ -9,9 +9,7 @@ public class Spawner : Feature
 
     public override Character OnGameStarted(GameTile tile)
     {
-        Character character = Instantiate(characterPrefab);
-        character.SetTile(tile);
-        character.transform.position = tile.transform.position;
+        Character character = tile.SpawnCharacter(characterPrefab);
         character.Rotate(initialRotation * Vector3.forward);
         return character;
     }

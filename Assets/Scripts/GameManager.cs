@@ -97,6 +97,8 @@ public class GameManager : MonoBehaviour
 
     void ClearMap()
     {
+        if (player) Destroy(player.gameObject);
+        foreach (Enemy enemy in enemies) Destroy(enemy.gameObject);
         if (gameMap) Destroy(gameMap.gameObject);
     }
 
@@ -130,6 +132,13 @@ public class GameManager : MonoBehaviour
                 QueueAction(new CharacterAttackAction(player, enemy, CurrentActionPoints));
                 CurrentActionPoints = 0;
             }
+            else if(tile.Feature != null && tile.Feature.Interactable)
+            {
+                if(tile.Feature.Interact(player, CurrentActionPoints, tile, this))
+                {
+                    CurrentActionPoints = 0;
+                }
+            }
             else
             {
                 QueueAction(new PlayerMoveAction(player, player.transform.position, tile.transform.position));
@@ -156,6 +165,18 @@ public class GameManager : MonoBehaviour
     int RollDice()
     {
         return Random.Range(1, 7);
+    }
+
+    public void ChangePlayerHealth(int delta)
+    {
+        player.ChangeHealth(delta);
+    }
+
+    public void ChangeFoodTemperature(int delta)
+    {
+        foodTemp += delta;
+        foodTemp = Mathf.Clamp(foodTemp, 0, gameMap.MaxMoves);
+        onFoodTempChanged?.Invoke(foodTemp * 1f / gameMap.MaxMoves);
     }
 
     void PlayerWin()
@@ -186,6 +207,13 @@ public class GameManager : MonoBehaviour
     void OnPlayerHealthChanged(int health)
     {
         onPlayerHealthChanged?.Invoke(health);
+    }
+
+    void OnEnemySpawnedFromPickups(Character character)
+    {
+        Enemy enemy = character as Enemy;
+        enemies.Add(enemy);
+        enemy.onDied += () => enemies.Remove(enemy);
     }
 
     void QueueAction(GameAction action)
@@ -254,10 +282,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         FinishLine.onPlayerEnteredFinishLine += OnPlayerEnteredFinishLine;
+        PickupSpawner.onEnemySpawned += OnEnemySpawnedFromPickups;
     }
 
     private void OnDisable()
     {
         FinishLine.onPlayerEnteredFinishLine -= OnPlayerEnteredFinishLine;
+        PickupSpawner.onEnemySpawned -= OnEnemySpawnedFromPickups;
     }
 }

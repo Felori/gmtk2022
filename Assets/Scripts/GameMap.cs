@@ -40,9 +40,6 @@ public class GameMap : MonoBehaviour
 
         characters.RemoveAll(character => character == null);
 
-        foreach (Character character in characters)
-            character.transform.parent = transform;
-
         return characters.ToArray();
     }
 

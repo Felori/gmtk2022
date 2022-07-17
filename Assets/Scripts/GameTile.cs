@@ -14,6 +14,7 @@ public class GameTile : MonoBehaviour
     public Vector3 WorldPosition => transform.position;
 
     [SerializeField, HideInInspector] Feature feature;
+    public Feature Feature => feature;
 
     Func<int, int, GameTile> tileProvider;
 
@@ -35,6 +36,14 @@ public class GameTile : MonoBehaviour
             foreach (ICharacterEnterHandler handler in GetComponentsInChildren<ICharacterEnterHandler>())
                 handler.OnCharacterEnter(character);
         }
+    }
+
+    public Character SpawnCharacter(Character prefab)
+    {
+        Character character = Instantiate(prefab);
+        character.SetTile(this);
+        character.transform.position = transform.position;
+        return character;
     }
 
     public void PlaceFeature(Feature featurePrefab)
