@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99425da10f7427a4784708ad84988274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxMoves>k__BackingField: 100
+  <MaxMoves>k__BackingField: 60
   <EditModeCursor>k__BackingField: {fileID: 5096334726778359411}
   tilemap:
   - {fileID: 4375400811217640303}
