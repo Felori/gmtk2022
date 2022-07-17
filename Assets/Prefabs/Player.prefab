@@ -182,7 +182,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2051534893979574950}
   - component: {fileID: 8323025019883666870}
-  - component: {fileID: 9028890806482238053}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -222,26 +221,6 @@ MonoBehaviour:
   maxHealth: 5
   model: {fileID: 7664240786518101784}
   actionPointsText: {fileID: 1639407243924743624}
---- !u!95 &9028890806482238053
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6478252117647477730}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9566b31861e126a45aad87c21c72ca4e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7838065317356648346
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,3 +328,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1273711987710152495}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2120152658132333182 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 366a959a94944ee438f482b2f64b4786,
+    type: 3}
+  m_PrefabInstance: {fileID: 1273711987710152495}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6802776157461654491
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120152658132333182}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b387deac59927a34b9054034161d92fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
