@@ -46,6 +46,7 @@ public class GameTile : MonoBehaviour
         return character;
     }
 
+#if UNITY_EDITOR
     public void PlaceFeature(Feature featurePrefab)
     {
         RemoveFeature();
@@ -61,6 +62,7 @@ public class GameTile : MonoBehaviour
 
         EditorUtility.SetDirty(this);
     }
+#endif
 
     public void Rotate()
     {

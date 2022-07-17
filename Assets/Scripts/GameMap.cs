@@ -10,6 +10,7 @@ public class GameMap : MonoBehaviour
 
     [SerializeField, HideInInspector] List<GameTile> tilemap = new List<GameTile>();
 
+#if UNITY_EDITOR
     public void PlaceTile(GameTile prefab, int x, int y)
     {
         RemoveTile(x, y);
@@ -28,6 +29,7 @@ public class GameMap : MonoBehaviour
         DestroyImmediate(tile.gameObject);
         tilemap.Remove(tile);
     }
+#endif
 
     public Character[] OnGameStarted()
     {
@@ -61,6 +63,7 @@ public class GameMap : MonoBehaviour
         return null;
     }
 
+#if UNITY_EDITOR
     [ContextMenu("Print Tilemap Size")]
     void PrintTilemapSize()
     {
@@ -74,4 +77,5 @@ public class GameMap : MonoBehaviour
 
         EditorUtility.SetDirty(this);
     }
+#endif
 }
