@@ -7,8 +7,9 @@ public class Character : MonoBehaviour
     public GameTile Tile { get; private set; }
 
     [SerializeField] int maxHealth = 5;
+    [SerializeField] Transform model = default;
 
-    int health;
+    protected int health;
 
     public void SetTile(GameTile tile)
     {
@@ -30,13 +31,18 @@ public class Character : MonoBehaviour
     {
         Vector2 dir2 = new Vector2(dir.x, dir.z);
         float angle = Vector2.SignedAngle(dir2, Vector2.up);
-        transform.rotation = Quaternion.Euler(0f, angle, 0f);
+        model.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
     public void TakeDamage(int damage)
     {
-        health -= damage;
+        SetHealth(health - damage);
         if (health <= 0) Die();
+    }
+
+    protected virtual void SetHealth(int health)
+    {
+        this.health = health;
     }
 
     protected virtual void Die()
@@ -46,6 +52,6 @@ public class Character : MonoBehaviour
 
     private void Awake()
     {
-        health = maxHealth;
+        SetHealth(maxHealth);
     }
 }

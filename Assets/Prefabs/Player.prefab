@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  model: {fileID: 7664240786518101784}
 --- !u!95 &9028890806482238053
 Animator:
   serializedVersion: 4
