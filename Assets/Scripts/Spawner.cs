@@ -11,6 +11,7 @@ public class Spawner : Feature
     {
         Character character = Instantiate(characterPrefab);
         character.SetTile(tile);
+        character.transform.position = tile.transform.position;
         character.Rotate(initialRotation * Vector3.forward);
         return character;
     }

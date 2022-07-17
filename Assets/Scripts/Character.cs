@@ -6,6 +6,8 @@ public class Character : MonoBehaviour
 {
     public GameTile Tile { get; private set; }
 
+    [SerializeField] protected Animator animator;
+
     [SerializeField] int maxHealth = 5;
     [SerializeField] Transform model = default;
 
@@ -17,8 +19,6 @@ public class Character : MonoBehaviour
 
         Tile = tile;
         tile.SetCharacter(this);
-
-        transform.position = tile.WorldPosition;
     }
 
     public void LookAt(Vector3 point)
@@ -34,9 +34,15 @@ public class Character : MonoBehaviour
         model.rotation = Quaternion.Euler(0f, angle, 0f);
     }
 
+    public void Attack()
+    {
+        animator.SetTrigger("Attack");
+    }
+
     public void TakeDamage(int damage)
     {
         SetHealth(health - damage);
+        OnDamageTaken();
         if (health <= 0) Die();
     }
 
@@ -47,10 +53,16 @@ public class Character : MonoBehaviour
 
     protected virtual void Die()
     {
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 5f);
+    }
+
+    protected virtual void OnDamageTaken()
+    {
 
     }
 
-    private void Awake()
+    private void Start()
     {
         SetHealth(maxHealth);
     }
