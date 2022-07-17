@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] UnityEvent onPlayerWon = default;
     [SerializeField] UnityEvent onPlayerLost = default;
     [SerializeField] UnityEvent<float> onFoodTempChanged = default;
+    [SerializeField] UnityEvent<int> onPlayerHealthChanged = default;
 
     Player player;
     List<Enemy> enemies;
@@ -58,6 +59,7 @@ public class GameManager : MonoBehaviour
         }
 
         player.onPlayerDied += OnPlayerDied;
+        player.onHealthChanged += OnPlayerHealthChanged;
 
         playerCam.Follow = player.transform;
 
@@ -160,6 +162,11 @@ public class GameManager : MonoBehaviour
     {
         if(enemies.Count == 0)
             PlayerWin();
+    }
+
+    void OnPlayerHealthChanged(int health)
+    {
+        onPlayerHealthChanged?.Invoke(health);
     }
 
     void QueueAction(GameAction action)

@@ -62,7 +62,7 @@ public class Character : MonoBehaviour
 
     }
 
-    private void Awake()
+    private void Start()
     {
         SetHealth(maxHealth);
     }

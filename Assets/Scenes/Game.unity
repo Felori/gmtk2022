@@ -176,6 +176,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onPlayerHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 510541314}
+        m_TargetAssemblyTypeName: PlayerHealthUI, Assembly-CSharp
+        m_MethodName: SetHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!4 &145863926
 Transform:
   m_ObjectHideFlags: 0
@@ -717,6 +732,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 510541312}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &510541314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8787210896631617082, guid: 4c2c661476aa89a49a05fe1df6c18c10,
+    type: 3}
+  m_PrefabInstance: {fileID: 510541312}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f966ca8db99b12d458ef59c534217553, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &916321212 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3218135699293685104, guid: 68922b4acb6d1034d94426103e89f1bd,
@@ -1152,7 +1179,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.777311, y: 1}
+    m_SensorSize: {x: 2.1698112, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

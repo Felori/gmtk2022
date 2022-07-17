@@ -9,6 +9,7 @@ public class Player : Character
     [SerializeField] TMP_Text actionPointsText = default;
 
     public event Action onPlayerDied;
+    public event Action<int> onHealthChanged;
 
     protected override void Die()
     {
@@ -21,6 +22,12 @@ public class Player : Character
     {
         if(health > 0)
             animator.SetTrigger("Take Damage");
+    }
+
+    protected override void SetHealth(int health)
+    {
+        base.SetHealth(health);
+        onHealthChanged?.Invoke(health);
     }
 
     public void Attack(Enemy enemy, int damage)

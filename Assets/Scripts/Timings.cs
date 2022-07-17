@@ -17,5 +17,5 @@ public static class Timings
     public const float ENEMY_ACTION_DELAY = 0.3f;
 
     // Length of the time between player turns (excluding the time it takes to process enemy actions)
-    public const float NEW_TURN_DELAY = 1f;
+    public const float NEW_TURN_DELAY = 0.6f;
 }

@@ -218,9 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8d960d05079aa24db9bf35f5d57d575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 5
-  model: {fileID: 7664240786518101784}
   animator: {fileID: 6802776157461654491}
+  maxHealth: 3
+  model: {fileID: 7664240786518101784}
   actionPointsText: {fileID: 1639407243924743624}
 --- !u!1 &7838065317356648346
 GameObject:
