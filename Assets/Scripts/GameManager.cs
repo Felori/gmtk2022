@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] UnityEvent onPlayerWon = default;
     [SerializeField] UnityEvent onPlayerLost = default;
+    [SerializeField] UnityEvent<float> onFoodTempChanged = default;
 
     Player player;
     List<Enemy> enemies;
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         actionPointsUi.SetActionPoints(actionPoints, false);
 
         foodTemp = gameMap.MaxMoves;
+        onFoodTempChanged?.Invoke(1f);
 
         gameOver = false;
     }
@@ -109,6 +111,7 @@ public class GameManager : MonoBehaviour
             }
 
             foodTemp--;
+            onFoodTempChanged?.Invoke(foodTemp * 1f / gameMap.MaxMoves);
             if (foodTemp == 0)
             {
                 PlayerLose();
