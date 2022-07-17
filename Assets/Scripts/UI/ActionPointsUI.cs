@@ -15,6 +15,7 @@ public class ActionPointsUI : MonoBehaviour
         }
 
         if (playAnimation) animator.SetTrigger("NewNumpers");
+        if (playAnimation) animator.SetFloat("DiceValue", (float)actionPoints[2]);
     }
 
     public void SetCurrentActionPoints(int points)
