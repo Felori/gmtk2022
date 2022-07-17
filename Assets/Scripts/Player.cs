@@ -12,4 +12,9 @@ public class Player : Character
         Destroy(gameObject);
         onPlayerDied?.Invoke();
     }
+
+    public void Attack(Enemy enemy, int damage)
+    {
+        enemy.TakeDamage(damage);
+    }
 }

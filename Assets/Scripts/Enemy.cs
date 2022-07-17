@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,8 @@ public class Enemy : Character
 {
     [SerializeField] int damage = 1;
     [SerializeField] Animator animator = default;
+
+    public event Action onDied;
 
     public void DoEnemyTurn()
     {
@@ -22,5 +25,11 @@ public class Enemy : Character
         LookAt(player.transform.position);
         player.TakeDamage(damage);
         animator.SetTrigger("Attack");
+    }
+
+    protected override void Die()
+    {
+        onDied?.Invoke();
+        Destroy(gameObject);
     }
 }

@@ -39,7 +39,11 @@ public class GameManager : MonoBehaviour
         foreach(Character character in characters)
         {
             if (character is Player player) this.player = player;
-            if (character is Enemy enemy) enemies.Add(enemy);
+            if (character is Enemy enemy)
+            {
+                enemy.onDied += () => enemies.Remove(enemy);
+                enemies.Add(enemy);
+            }
         }
 
         if (player == null)
@@ -89,17 +93,28 @@ public class GameManager : MonoBehaviour
         if (CurrentActionPoints == 0) return;
 
         GameTile tile = gameMap.GetTile(x, y);
-        if (tile != null && tile.Character == null)
+        if (tile != null)
         {
             player.LookAt(tile.transform.position);
-            player.SetTile(tile);
+
+            if (tile.Character != null && tile.Character is Enemy enemy)
+            {
+                player.Attack(enemy, CurrentActionPoints);
+                CurrentActionPoints = 0;
+            }
+            else
+            {
+                player.SetTile(tile);
+                CurrentActionPoints--;
+            }
+
             foodTemp--;
             if (foodTemp == 0)
             {
                 PlayerLose();
                 Debug.Log("Food got too cold!");
             }
-            CurrentActionPoints--;
+
             if (CurrentActionPoints == 0) EndTurn();
         }
     }
@@ -130,7 +145,8 @@ public class GameManager : MonoBehaviour
 
     void OnPlayerEnteredFinishLine()
     {
-        PlayerWin();
+        if(enemies.Count == 0)
+            PlayerWin();
     }
 
     private void Start()
