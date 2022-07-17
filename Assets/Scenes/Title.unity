@@ -5250,6 +5250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 1
+  changeSceneKey: 32
+  resetKey: 114
 --- !u!4 &217901674
 Transform:
   m_ObjectHideFlags: 0
