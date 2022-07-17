@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3218135699293685105}
   - component: {fileID: 3218135699293685104}
   m_Layer: 0
-  m_Name: Map1
+  m_Name: Map 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99425da10f7427a4784708ad84988274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MaxMoves>k__BackingField: 30
+  <MaxMoves>k__BackingField: 100
   <EditModeCursor>k__BackingField: {fileID: 3218135699684301167}
   tilemap:
   - {fileID: 5290794095253756297}
@@ -184,7 +184,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3218135699684301163
 Transform:
   m_ObjectHideFlags: 0

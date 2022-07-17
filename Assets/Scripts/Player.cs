@@ -37,6 +37,8 @@ public class Player : Character
 
     public void OnPlayerMoved()
     {
+        animator.Play("Player Move", 0, 0);
+
         //animator.SetTrigger("Move");
-    }
+	}
 }
