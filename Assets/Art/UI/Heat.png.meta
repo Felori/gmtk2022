@@ -131,10 +131,10 @@ TextureImporter:
       name: Heat_0
       rect:
         serializedVersion: 2
-        x: 2
-        y: 0
-        width: 554
-        height: 347
+        x: 75
+        y: 16
+        width: 564
+        height: 371
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,12 +152,12 @@ TextureImporter:
       name: Heat_1
       rect:
         serializedVersion: 2
-        x: 668
-        y: 0
-        width: 84
-        height: 327
+        x: 749
+        y: 58
+        width: 81
+        height: 290
       alignment: 9
-      pivot: {x: 0.52308583, y: 0.20912789}
+      pivot: {x: 0.5112591, y: 0.16288131}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
