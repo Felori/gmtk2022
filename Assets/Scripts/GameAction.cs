@@ -33,6 +33,8 @@ public class PlayerMoveAction : GameAction
 
         player.Rotate(to - from);
 
+        player.OnPlayerMoved();
+
         while (progress < 1f)
         {
             progress += Time.deltaTime / duration;
@@ -63,6 +65,7 @@ public class CharacterAttackAction : GameAction
     public override IEnumerator Execute(GameManager manager)
     {
         attacker.LookAt(target.transform.position);
+        target.LookAt(attacker.transform.position);
 
         attacker.Attack();
 

@@ -18,12 +18,6 @@ public class Player : Character
         onPlayerDied?.Invoke();
     }
 
-    protected override void OnDamageTaken()
-    {
-        if(health > 0)
-            animator.SetTrigger("Take Damage");
-    }
-
     protected override void SetHealth(int health)
     {
         base.SetHealth(health);
