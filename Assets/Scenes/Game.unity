@@ -157,10 +157,10 @@ MonoBehaviour:
   actionPointsUi: {fileID: 323899239045645655}
   playerCam: {fileID: 1616579226}
   maps:
+  - {fileID: 3323528109552916849, guid: 1fb2aa9e754a20c4aac258e372869426, type: 3}
+  - {fileID: 8697197661198761702, guid: 3c75cbfe06c7e644dbe5d27d279ead5a, type: 3}
   - {fileID: 3218135699293685104, guid: 68922b4acb6d1034d94426103e89f1bd, type: 3}
   - {fileID: 5096334727478268524, guid: f4c93ab9c17abdf498f515c64555b7ed, type: 3}
-  - {fileID: 8697197661198761702, guid: 3c75cbfe06c7e644dbe5d27d279ead5a, type: 3}
-  - {fileID: 3323528109552916849, guid: 1fb2aa9e754a20c4aac258e372869426, type: 3}
   - {fileID: 3323528109552916849, guid: 767358e8422da5948b13fed82d23ae6f, type: 3}
   currentMap: 0
   onPlayerWon:
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.1698112, y: 1}
+    m_SensorSize: {x: 1.5376176, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
