@@ -169,10 +169,10 @@ MonoBehaviour:
   onPlayerLost:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6226731030953494828}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 6226731030953494829}
+        m_TargetAssemblyTypeName: LoseScreenUI, Assembly-CSharp
+        m_MethodName: ShowScreen
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1234,7 +1234,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.778169, y: 1}
+    m_SensorSize: {x: 2.1698112, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1862,6 +1862,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1466798504}
     m_Modifications:
+    - target: {fileID: 2456746192482222074, guid: bf4cd0baedbe9de4fba9d8f16361427d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 145863925}
+    - target: {fileID: 2456746192482222074, guid: bf4cd0baedbe9de4fba9d8f16361427d,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartGame
+      objectReference: {fileID: 0}
     - target: {fileID: 3758262731433863041, guid: bf4cd0baedbe9de4fba9d8f16361427d,
         type: 3}
       propertyPath: m_Pivot.x
@@ -1985,12 +1995,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6226731030953494826}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &6226731030953494828 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8208992576068766923, guid: bf4cd0baedbe9de4fba9d8f16361427d,
+--- !u!114 &6226731030953494829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 983080232040912701, guid: bf4cd0baedbe9de4fba9d8f16361427d,
     type: 3}
   m_PrefabInstance: {fileID: 6226731030953494826}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6886deef340d5774390c387f2ce6dfed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6475465082528909188
 GameObject:
   m_ObjectHideFlags: 0
