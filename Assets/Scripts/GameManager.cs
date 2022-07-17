@@ -6,14 +6,17 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
     [SerializeField] CinemachineVirtualCamera playerCam = default;
+    [SerializeField] GameMap[] maps = default;
+    [SerializeField] int currentMap = 0;
 
     [SerializeField] UnityEvent onPlayerWon = default;
     [SerializeField] UnityEvent onPlayerLost = default;
     [SerializeField] UnityEvent<float> onFoodTempChanged = default;
     [SerializeField] UnityEvent<int> onPlayerHealthChanged = default;
+
+    GameMap gameMap;
 
     Player player;
     List<Enemy> enemies;
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        LoadMap();
+
         enemies = new List<Enemy>();
         Character[] characters = gameMap.OnGameStarted();
         foreach(Character character in characters)
@@ -81,9 +86,25 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
-        gameMap.ResetMap();
-
+        ClearMap();
         StartGame();
+    }
+
+    void LoadMap()
+    {
+        gameMap = Instantiate(maps[currentMap]);
+    }
+
+    void ClearMap()
+    {
+        if (player) Destroy(player.gameObject);
+        foreach (Enemy enemy in enemies) Destroy(enemy.gameObject);
+        if (gameMap) Destroy(gameMap.gameObject);
+    }
+
+    void SetCurrentMap(int map)
+    {
+        currentMap = map;
     }
 
     void StartTurn()
@@ -111,6 +132,13 @@ public class GameManager : MonoBehaviour
                 QueueAction(new CharacterAttackAction(player, enemy, CurrentActionPoints));
                 CurrentActionPoints = 0;
             }
+            else if(tile.Feature != null && tile.Feature.Interactable)
+            {
+                if(tile.Feature.Interact(player, CurrentActionPoints, tile, this))
+                {
+                    CurrentActionPoints = 0;
+                }
+            }
             else
             {
                 QueueAction(new PlayerMoveAction(player, player.transform.position, tile.transform.position));
@@ -137,6 +165,18 @@ public class GameManager : MonoBehaviour
     int RollDice()
     {
         return Random.Range(1, 7);
+    }
+
+    public void ChangePlayerHealth(int delta)
+    {
+        player.ChangeHealth(delta);
+    }
+
+    public void ChangeFoodTemperature(int delta)
+    {
+        foodTemp += delta;
+        foodTemp = Mathf.Clamp(foodTemp, 0, gameMap.MaxMoves);
+        onFoodTempChanged?.Invoke(foodTemp * 1f / gameMap.MaxMoves);
     }
 
     void PlayerWin()
@@ -167,6 +207,13 @@ public class GameManager : MonoBehaviour
     void OnPlayerHealthChanged(int health)
     {
         onPlayerHealthChanged?.Invoke(health);
+    }
+
+    void OnEnemySpawnedFromPickups(Character character)
+    {
+        Enemy enemy = character as Enemy;
+        enemies.Add(enemy);
+        enemy.onDied += () => enemies.Remove(enemy);
     }
 
     void QueueAction(GameAction action)
@@ -202,7 +249,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SetCurrentMap((currentMap + 1) % maps.Length);
+            RestartGame();
+        }
 
         if (ProcessActions()) return;
 
@@ -231,10 +282,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         FinishLine.onPlayerEnteredFinishLine += OnPlayerEnteredFinishLine;
+        PickupSpawner.onEnemySpawned += OnEnemySpawnedFromPickups;
     }
 
     private void OnDisable()
     {
         FinishLine.onPlayerEnteredFinishLine -= OnPlayerEnteredFinishLine;
+        PickupSpawner.onEnemySpawned -= OnEnemySpawnedFromPickups;
     }
 }
