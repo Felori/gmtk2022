@@ -29,6 +29,12 @@ public class GameTile : MonoBehaviour
     public void SetCharacter(Character character)
     {
         Character = character;
+
+        if(character != null)
+        {
+            foreach (ICharacterEnterHandler handler in GetComponentsInChildren<ICharacterEnterHandler>())
+                handler.OnCharacterEnter(character);
+        }
     }
 
     public void PlaceFeature(Feature featurePrefab)

@@ -65,7 +65,7 @@ PrefabInstance:
     - target: {fileID: 5789385412702514413, guid: 3df433b38af8c8a42a26c72f502729ba,
         type: 3}
       propertyPath: m_Name
-      value: Base Tile
+      value: TileFinishLine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3df433b38af8c8a42a26c72f502729ba, type: 3}
@@ -75,6 +75,24 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2703067822068980241}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8492450272512308988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5789385412702514413, guid: 3df433b38af8c8a42a26c72f502729ba,
+    type: 3}
+  m_PrefabInstance: {fileID: 2703067822068980241}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &469498421507258144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8492450272512308988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44e9fe362516c4a4fba1de24d05fe327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7216424236944808387
 PrefabInstance:
   m_ObjectHideFlags: 0

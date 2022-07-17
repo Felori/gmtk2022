@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Cinemachine;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
     [SerializeField] CinemachineVirtualCamera playerCam = default;
+
+    [SerializeField] UnityEvent onPlayerWon = default;
+    [SerializeField] UnityEvent onPlayerLost = default;
 
     Player player;
     List<Enemy> enemies;
@@ -92,8 +96,8 @@ public class GameManager : MonoBehaviour
             foodTemp--;
             if (foodTemp == 0)
             {
+                PlayerLose();
                 Debug.Log("Food got too cold!");
-                gameOver = true;
             }
             CurrentActionPoints--;
             if (CurrentActionPoints == 0) EndTurn();
@@ -105,10 +109,28 @@ public class GameManager : MonoBehaviour
         return Random.Range(1, 7);
     }
 
-    void OnPlayerDied()
+    void PlayerWin()
+    {
+        Debug.Log("Player Won!");
+        gameOver = true;
+        onPlayerWon?.Invoke();
+    }
+
+    void PlayerLose()
     {
         gameOver = true;
+        onPlayerLost?.Invoke();
+    }
+
+    void OnPlayerDied()
+    {
+        PlayerLose();
         Debug.Log("Player Died!");
+    }
+
+    void OnPlayerEnteredFinishLine()
+    {
+        PlayerWin();
     }
 
     private void Start()
@@ -140,5 +162,15 @@ public class GameManager : MonoBehaviour
         {
             MovePlayer(x + 1, y);
         }
+    }
+
+    private void Awake()
+    {
+        FinishLine.onPlayerEnteredFinishLine += OnPlayerEnteredFinishLine;
+    }
+
+    private void OnDisable()
+    {
+        FinishLine.onPlayerEnteredFinishLine -= OnPlayerEnteredFinishLine;
     }
 }
