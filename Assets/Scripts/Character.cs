@@ -42,8 +42,8 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         SetHealth(health - damage);
-        OnDamageTaken();
         if (health <= 0) Die();
+        else animator.SetTrigger("Take Damage");
     }
 
     protected virtual void SetHealth(int health)
@@ -55,11 +55,6 @@ public class Character : MonoBehaviour
     {
         animator.SetTrigger("Die");
         Destroy(gameObject, 5f);
-    }
-
-    protected virtual void OnDamageTaken()
-    {
-
     }
 
     private void Start()
