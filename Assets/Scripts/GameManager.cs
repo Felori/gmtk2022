@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         set
         {
             actionPoints[0] = value;
+            player.SetRemainingActionPoints(value);
             actionPointsUi.SetCurrentActionPoints(value);
         }
     }
@@ -63,6 +64,8 @@ public class GameManager : MonoBehaviour
 
         actionPointsUi.SetActionPoints(actionPoints, false);
 
+        player.SetRemainingActionPoints(CurrentActionPoints);
+
         foodTemp = gameMap.MaxMoves;
         onFoodTempChanged?.Invoke(1f);
 
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour
         actionPoints[2] = RollDice();
 
         actionPointsUi.SetActionPoints(actionPoints, true);
+
+        player.SetRemainingActionPoints(CurrentActionPoints);
     }
 
     void MovePlayer(int x, int y)
