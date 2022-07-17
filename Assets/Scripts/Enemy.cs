@@ -32,12 +32,15 @@ public class Enemy : Character
     protected override void SetHealth(int health)
     {
         base.SetHealth(health);
+        health = Mathf.Max(health, 0);
         healthText.text = health.ToString();
     }
 
     protected override void Die()
     {
         onDied?.Invoke();
-        Destroy(gameObject);
+        healthText.gameObject.SetActive(false);
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 5);
     }
 }
