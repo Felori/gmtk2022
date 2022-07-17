@@ -6,14 +6,17 @@ using Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameMap gameMap = default;
     [SerializeField] ActionPointsUI actionPointsUi = default;
     [SerializeField] CinemachineVirtualCamera playerCam = default;
+    [SerializeField] GameMap[] maps = default;
+    [SerializeField] int currentMap = 0;
 
     [SerializeField] UnityEvent onPlayerWon = default;
     [SerializeField] UnityEvent onPlayerLost = default;
     [SerializeField] UnityEvent<float> onFoodTempChanged = default;
     [SerializeField] UnityEvent<int> onPlayerHealthChanged = default;
+
+    GameMap gameMap;
 
     Player player;
     List<Enemy> enemies;
@@ -40,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        LoadMap();
+
         enemies = new List<Enemy>();
         Character[] characters = gameMap.OnGameStarted();
         foreach(Character character in characters)
@@ -81,9 +86,23 @@ public class GameManager : MonoBehaviour
 
     void RestartGame()
     {
-        gameMap.ResetMap();
-
+        ClearMap();
         StartGame();
+    }
+
+    void LoadMap()
+    {
+        gameMap = Instantiate(maps[currentMap]);
+    }
+
+    void ClearMap()
+    {
+        if (gameMap) Destroy(gameMap.gameObject);
+    }
+
+    void SetCurrentMap(int map)
+    {
+        currentMap = map;
     }
 
     void StartTurn()
@@ -202,7 +221,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) RestartGame();
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            SetCurrentMap((currentMap + 1) % maps.Length);
+            RestartGame();
+        }
 
         if (ProcessActions()) return;
 
