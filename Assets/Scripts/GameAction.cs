@@ -33,6 +33,8 @@ public class PlayerMoveAction : GameAction
 
         player.Rotate(to - from);
 
+        player.OnPlayerMoved();
+
         while (progress < 1f)
         {
             progress += Time.deltaTime / duration;
