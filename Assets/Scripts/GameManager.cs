@@ -190,7 +190,10 @@ public class GameManager : MonoBehaviour
             SetCurrentMap(currentMap + 1);
             RestartGame();
         }
-        SceneManager.LoadScene("Title");
+        else
+        {
+            SceneManager.LoadScene("Title");
+        }
     }
 
     void PlayerLose()
