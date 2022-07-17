@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 player.SetTile(tile);
+                player.OnPlayerMoved();
                 CurrentActionPoints--;
             }
 

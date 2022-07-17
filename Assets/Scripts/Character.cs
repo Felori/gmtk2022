@@ -37,6 +37,7 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage)
     {
         SetHealth(health - damage);
+        OnDamageTaken();
         if (health <= 0) Die();
     }
 
@@ -46,6 +47,11 @@ public class Character : MonoBehaviour
     }
 
     protected virtual void Die()
+    {
+
+    }
+
+    protected virtual void OnDamageTaken()
     {
 
     }
